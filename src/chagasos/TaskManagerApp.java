@@ -77,9 +77,12 @@ public class TaskManagerApp extends JInternalFrame {
         scroll.setBorder(BorderFactory.createLineBorder(ChagasOS.BG_CONTROL));
         root.add(scroll, BorderLayout.CENTER);
 
-        // botones de abajo
+        // botones de abajo — ALEJADOS de la esquina inferior-derecha: esa zona
+        // es la de agarre para redimensionar la ventana y no debe disparar
+        // botones por accidente (bug: redimensionar provocaba el BSOD).
         JPanel btns = new JPanel(new FlowLayout(FlowLayout.RIGHT, 8, 0));
         btns.setOpaque(false);
+        btns.setBorder(BorderFactory.createEmptyBorder(4, 8, 16, 16));
         JButton endBtn = new JButton("Finalizar tarea");
         endBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +95,14 @@ public class TaskManagerApp extends JInternalFrame {
         JButton crashBtn = new JButton("Provocar ca\u00EDda del sistema");
         crashBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ChagasOS.instance.blueScreen();
+                // confirmaci\u00F3n expl\u00EDcita: la pantalla azul solo si de verdad la quieres
+                int r = JOptionPane.showConfirmDialog(TaskManagerApp.this,
+                        "\u00BFTumbar ChagasOS de verdad?\n(La pantalla azul solo deber\u00EDa salir si T\u00DA la pides)",
+                        "Provocar ca\u00EDda del sistema",
+                        JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (r == JOptionPane.YES_OPTION) {
+                    ChagasOS.instance.blueScreen();
+                }
             }
         });
         btns.add(endBtn);
