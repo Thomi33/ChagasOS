@@ -52,7 +52,7 @@ java -cp "out:lib/jlayer.jar" chagasos.ChagasOS
 
 ## Aplicaciones incluidas
 
-1. **ChagasPlayer** 🎵 — Reproductor MP3 REAL (decodifica con JLayer y suena de
+1. **Chagastify** 🎵 — Reproductor MP3 REAL (decodifica con JLayer y suena de
    verdad). Play/pausa/stop/anterior/siguiente, barra de progreso arrastrable
    (seek), volumen, visualizador animado, duración real de cada canción y
    reproducción automática en bucle. Solo contiene la música del Chagas (es ley).
