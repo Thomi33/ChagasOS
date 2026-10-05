@@ -1,0 +1,11 @@
+# Build
+out/
+*.class
+
+# Logs del sistema (excepciones capturadas)
+chagas_error.log
+
+# Sistema
+.DS_Store
+Thumbs.db
+__pycache__/
